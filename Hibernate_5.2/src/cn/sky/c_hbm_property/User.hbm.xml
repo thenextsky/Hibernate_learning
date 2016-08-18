@@ -17,7 +17,7 @@
 		<property name="age" column="t_age" type="int" not-null="true"></property>
 		<property name="birthday" column="t_birthday" type="date"></property>
 		<property name="description" column="`desc`" type="string" length="1000"></property>
-		<property name="photo" column="t_photo" type="binary"></property>
+		<property name="photo" column="t_photo" type="binary" length="102400"></property>
 		
 	</class>
 
