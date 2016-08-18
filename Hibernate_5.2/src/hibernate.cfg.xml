@@ -1,0 +1,38 @@
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory ><!-- name="foo"不要加名字，否则会试图把factory注册到jndi，然而抛异常了 -->
+		
+		<!-- 配置数据库信息 -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.url">jdbc:mysql:///hibernatetest</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		
+		<!-- 其他配置 -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">false</property>
+		<property name="hbm2ddl.auto">update</property>
+		<!-- create：先删除，再创建-->
+		<!-- create-drop：初始化时创建表，SessionFactory执行close()时删除表 -->
+		<!-- update：表不存在就创建，不一样就更新 （开发环境）
+			有些情况不会更新：非空约束互相转换，varchar长度改变（变大变小都一样）
+		-->
+		<!-- validate： 验证表结构是否一致，不一致则抛异常（生产环境）-->
+		
+		<!-- 导入映射文件 -->
+		<!-- 一个映射文件对应一个表，类可以同名，但是映射文件里面的table表名不能一样（多个实体类不能对应一个表） -->
+		<!-- <mapping resource="cn/sky/a_helloworld/User.hbm.xml"/>
+		<mapping resource="cn/sky/c_hbm_property/User.hbm.xml"/> -->
+		
+	</session-factory>
+</hibernate-configuration>
