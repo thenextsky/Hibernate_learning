@@ -1,8 +1,8 @@
 package cn.sky.e_hbm_collection;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,9 +25,11 @@ public class App {
 		
 		User user = new User();
 		user.setName("aaa");
-		Set<String> addressSet = new HashSet<String>();
-		addressSet.add("address111");
-		addressSet.add("address222");
+//		Set<String> addressSet = new HashSet<String>();
+		Set<String> addressSet = new TreeSet<String>();//当set元素指定sort属性后，set必须是可排序的；
+		addressSet.add("1address111");
+		addressSet.add("3address222");
+		addressSet.add("2address222");
 		user.setAddressSet(addressSet);
 		//////////
 		user.getAddressList().add("地址111");
@@ -58,7 +60,7 @@ public class App {
 		session.beginTransaction();
 		//------------------------------------------
 		
-		User user = session.get(User.class, 5);
+		User user = session.get(User.class, 6);
 		
 		System.out.println(user.getName());
 		System.out.println(user.getAddressSet());

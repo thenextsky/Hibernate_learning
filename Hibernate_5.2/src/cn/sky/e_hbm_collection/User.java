@@ -10,7 +10,7 @@ public class User {
 	
 	private Integer id;
 	private String name;
-	private Set<String> addressSet;//集合要用接口，而不能声明为具体的实现类，因为Hibernate会根据接口转型成别的实现类
+	private Set<String> addressSet;//集合要用接口，而不能声明为具体的实现类，因为Hibernate执行session.save的时候会根据接口转型成别的实现类
 	private List<String> addressList = new ArrayList<String>();//是否初始化均可
 	private String[] addressArray = null;
 	private Map<String,String> addressMap = new HashMap<String,String>();

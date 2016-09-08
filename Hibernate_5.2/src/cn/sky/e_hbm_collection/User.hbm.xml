@@ -16,7 +16,10 @@
 		<property name="name"/>
 		
 		<!-- Set<String> addressSet集合 -->
-		<set name="addressSet" table="user_addressSet"><!--集合表-->
+		<!--
+		<set name="addressSet" table="user_addressSet">
+		-->
+		<set name="addressSet" table="user_addressSet" sort="natural"><!--集合表-->
 			<key column="userId"></key><!--集合外键-->
 			<element type="string" column="address"></element><!--集合元素-->
 		</set>
