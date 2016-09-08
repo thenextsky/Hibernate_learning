@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="cn.sky.f_hbm_one2many.Department" table="t_department">
+		<id name="id" type="int" column="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+
+		<!--employees属性：Set集合。本类与Employee的关系：一对多-->		
+		<!--table(集合表=员工表)不用写，可根据one-to-many的class推断出来-->
+		<set name="employees" >
+			<!--跟Employee.hbm.xml的many-to-one的 column(集合外键)是同一个-->
+			<key column="departmentId"></key>
+			<one-to-many class="cn.sky.f_hbm_one2many.Employee"/>
+		</set>
+		
+	</class>
+
+</hibernate-mapping>
+
