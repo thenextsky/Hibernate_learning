@@ -20,6 +20,34 @@
 			<key column="userId"></key><!--集合外键-->
 			<element type="string" column="address"></element><!--集合元素-->
 		</set>
+		
+		<!--List<String> addressList集合-->
+		<list name="addressList" table="user_addressList">
+			<key column="userId"></key>
+			<list-index column="idx"></list-index><!--存放索引的列，顺序不能颠倒-->
+			<element type="string" column="address"></element>
+		</list>
+		
+		<!--String[] addressArray数组-->
+		<array name="addressArray" table="user_addressArray">
+			<key column="userId"></key>
+			<list-index column="idx"></list-index>
+			<element type="string" column="address"></element>
+		</array>
+		
+		<!--Map<String,String> addressMap-->
+		<map name="addressMap" table="user_addressMap">
+			<key column="userId"></key>
+			<map-key type="string" column="key_"></map-key>
+			<element type="string" column="address"></element>
+		</map>
+		
+		<!--Bag集合，无序+可重复-->
+		<bag name="addressBag" table="user_addressBag">
+			<key column="userId"></key>
+			<element type="string" column="address"></element>
+		</bag>
+		
 	</class>
 
 </hibernate-mapping>
