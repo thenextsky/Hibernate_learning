@@ -16,8 +16,14 @@
 		<property name="name" type="string" column="name"/>
 
 		<!--employees属性：Set集合。本类与Employee的关系：一对多-->		
-		<!--table(集合表=员工表)不用写，可根据one-to-many的class推断出来-->
-		<set name="employees" >
+		<!--
+			table(集合表=员工表)不用写，可根据one-to-many的class推断出来
+			inverse:
+				默认false：本方维护关联关系。
+				true：本方不维护关联关系。
+				只是影响设置外键列，不影响获取。
+		-->
+		<set name="employees" inverse="true">
 			<!--跟Employee.hbm.xml的many-to-one的 column(集合外键)是同一个-->
 			<key column="departmentId"></key>
 			<one-to-many class="cn.sky.f_hbm_one2many.Employee"/>

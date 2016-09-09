@@ -26,7 +26,7 @@ public class App {
 		Employee employee1 = new Employee();
 		employee1.setName("张三");
 		Employee employee2 = new Employee();
-		employee2.setName("张三");
+		employee2.setName("李四");
 		
 		//关联部门与员工的关系
 		employee1.setDepartment(department);
@@ -73,18 +73,41 @@ public class App {
 		Session session = factory.openSession();
 		session.beginTransaction();
 		//------------------------------------------
+		//从员工解除关系
+//		Employee e = session.get(Employee.class, 9);
+//		e.setDepartment(session.get(Department.class, 4));
+//		session.update(e);不用这句话也能更新
+		
+		//从部门解除，跟inverse属性有关
+		Department d = session.get(Department.class, 4);
+		d.getEmployees().clear();
 		
 		//------------------------------------------
 		session.getTransaction().commit();
 		session.close();
 
 	}
+	
+	
 	@Test
 	public void testdelete() throws Exception {
 		
 		Session session = factory.openSession();
 		session.beginTransaction();
 		//------------------------------------------
+//		session.delete(session.get(Employee.class, 16));随便删
+		
+//		Department d = session.get(Department.class, 4);//部门没有员工，随便删
+		
+		/**
+		 * 部门有员工：
+		 * 	1.部门inverse=false，部门要维护关系，会先设置员工的部门id=null
+		 * 	2.部门inverse=true，部门不维护关系，直接删除部门，会报错
+		 */
+		
+//		Department d = session.get(Department.class, 6);
+//		session.delete(d);
+		
 		
 		//------------------------------------------
 		session.getTransaction().commit();

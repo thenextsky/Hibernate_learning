@@ -15,7 +15,10 @@
 		</id>
 		<property name="name" type="string" column="name"/>
 		
-		<!--department:Department类。本类与Department的关系：多对一。-->
+		<!--
+			department:Department类。本类与Department的关系：多对一。
+			多的一方没有inverse属性。
+		-->
 		<many-to-one name="department" 
 					 class="cn.sky.f_hbm_one2many.Department"
 					 column="departmentId"><!--(外键)-->
