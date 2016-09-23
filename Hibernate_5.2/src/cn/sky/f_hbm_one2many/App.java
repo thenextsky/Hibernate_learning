@@ -99,6 +99,10 @@ public class App {
 		
 //		Department d = session.get(Department.class, 4);//部门没有员工，随便删
 		
+		Department d = session.get(Department.class, 5);//在Department映射文件的set中cascade=delete，级联删除
+		session.delete(d);
+		
+		
 		/**
 		 * 部门有员工：
 		 * 	1.部门inverse=false，部门要维护关系，会先设置员工的部门id=null

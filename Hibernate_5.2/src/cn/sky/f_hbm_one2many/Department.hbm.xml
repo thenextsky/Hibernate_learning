@@ -22,8 +22,12 @@
 				默认false：本方维护关联关系。
 				true：本方不维护关联关系。
 				只是影响设置外键列，不影响获取。
+			cascade:
+				默认：none，不级联
+				级联：操作主对象时，对关联的对象也做相同的操作。
+				delete，save-update，all,none.....
 		-->
-		<set name="employees" inverse="true">
+		<set name="employees" inverse="true" cascade="none">
 			<!--跟Employee.hbm.xml的many-to-one的 column(集合外键)是同一个-->
 			<key column="departmentId"></key>
 			<one-to-many class="cn.sky.f_hbm_one2many.Employee"/>
