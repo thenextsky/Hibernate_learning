@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<!-- 采用每个具体类对应一张表。
+		抽象类不对应表。
+		abstract默认是false，设置为true表示本类不对应表（类可以不删abstract）
+		若抽象，则table属性被忽略，也不能创建实例对象（如果类本身不抽象但是abstract属性抽象，也不能创建实例，否则抛异常）
+	 -->
+	<class name="cn.sky.j_hbm_extends3.Article" abstract="false" table="t_article3">
+		<!-- 当使用每个具体类一张表的方式时，主键生成策略不能说identity。
+			因为继承结构中，主键值不能重复。
+		 -->
+		<id name="id" column="id" type="string">
+			<!-- <generator class="hilo">
+				<param name="table">hi_vallue</param>
+				<param name="column">next_value</param>
+				<param name="max_lo">100</param>
+			</generator> -->
+			<generator class="uuid"></generator>
+		</id>
+		
+		
+		<property name="title"/>
+		<property name="content" type="text" length="10000"/>
+		<property name="postTime" type="timestamp"/>
+		
+		<!-- 子类:Topic -->
+		<union-subclass name="cn.sky.j_hbm_extends3.Topic" table="t_topic3">
+			<property name="type" type="int"></property>
+		</union-subclass>
+
+		<!-- 子类:Reply -->
+		<union-subclass name="cn.sky.j_hbm_extends3.Reply" table="t_reply3">
+			<property name="floor" type="int"></property>
+		</union-subclass>
+		
+	</class>
+
+
+</hibernate-mapping>
+
