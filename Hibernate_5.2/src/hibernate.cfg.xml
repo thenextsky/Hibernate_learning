@@ -8,7 +8,7 @@
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
-<hibernate-configuration>
+<hibernate-configuration> 
 	<session-factory ><!-- name="foo"不要加名字，否则会试图把factory注册到jndi，然而抛异常了 -->
 		
 		<!-- 配置数据库信息 -->
